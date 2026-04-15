@@ -1,0 +1,55 @@
+{
+  "anthropic": {
+    "base_url": "https://openrouter.ai/api/v1",
+    "api_key": "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",
+    "default_model": "openrouter/auto"
+  },
+  "models": {
+    "free": {
+      "id": "openrouter/auto",
+      "description": "OpenRouter auto-selects best available free model"
+    },
+    "mistral_free": {
+      "id": "mistralai/mistral-7b-instruct:free",
+      "description": "Mistral 7B Instruct (free tier)"
+    },
+    "llama3_free": {
+      "id": "meta-llama/llama-3-8b-instruct:free",
+      "description": "Meta LLaMA 3 8B Instruct (free tier)"
+    },
+    "gemma_free": {
+      "id": "google/gemma-3-27b-it:free",
+      "description": "Google Gemma 3 27B (free tier)"
+    },
+    "deepseek_free": {
+      "id": "deepseek/deepseek-chat:free",
+      "description": "DeepSeek Chat (free tier)"
+    },
+    "claude_haiku": {
+      "id": "anthropic/claude-haiku-4-5",
+      "description": "Claude Haiku 4.5 — fast and affordable (paid)"
+    },
+    "claude_sonnet": {
+      "id": "anthropic/claude-sonnet-4-5",
+      "description": "Claude Sonnet 4.5 — balanced (paid)"
+    },
+    "gpt4o_mini": {
+      "id": "openai/gpt-4o-mini",
+      "description": "GPT-4o Mini — OpenAI (paid)"
+    },
+    "gpt4o": {
+      "id": "openai/gpt-4o",
+      "description": "GPT-4o — OpenAI (paid)"
+    },
+    "gemini_pro": {
+      "id": "google/gemini-pro-1.5",
+      "description": "Gemini Pro 1.5 — Google (paid)"
+    }
+  },
+  "env_vars": {
+    "_comment": "Set these as environment variables in your shell or .env file",
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api/v1",
+    "ANTHROPIC_API_KEY": "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",
+    "ANTHROPIC_MODEL": "openrouter/auto"
+  }
+}
