@@ -1581,7 +1581,9 @@ teachingsData.forEach((t, i) => {
 
   function getAudio() {
     if (!audio) {
-      audio = new Audio('content/audio/' + encodeURIComponent(t.file));
+      const src = new URL('content/audio/' + encodeURIComponent(t.file), document.baseURI).href;
+      audio = new Audio(src);
+      audio.preload = 'metadata';
       audio.addEventListener('timeupdate', () => {
         if (audio.duration) {
           fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
@@ -1592,6 +1594,11 @@ teachingsData.forEach((t, i) => {
         btn.innerHTML = playIcon;
         fill.style.width = '0%';
         tm.textContent = fmtTime(audio.duration);
+      });
+      audio.addEventListener('error', () => {
+        console.error('Audio failed to load', { src: audio.src, error: audio.error });
+        btn.innerHTML = playIcon;
+        tm.textContent = 'Audio load error';
       });
     }
     return audio;
@@ -1607,8 +1614,12 @@ teachingsData.forEach((t, i) => {
       }
     });
     if (a.paused) {
-      a.play().catch(() => {});
-      btn.innerHTML = pauseIcon;
+      a.play().then(() => {
+        btn.innerHTML = pauseIcon;
+      }).catch(err => {
+        console.error('Audio play failed', err, a.src);
+        btn.innerHTML = playIcon;
+      });
     } else {
       a.pause();
       btn.innerHTML = playIcon;
