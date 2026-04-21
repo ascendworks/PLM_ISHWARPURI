@@ -670,32 +670,25 @@ button { cursor: pointer; font-family: inherit; }
   font-family: var(--serif); font-size: 1.08rem;
   color: var(--cream); line-height: 1.45; margin-bottom: 20px;
 }
-.t-player {
-  display: flex; align-items: center; gap: 12px;
+.t-video-embed {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden;
+  margin-bottom: 0;
 }
-.t-play {
-  width: 38px; height: 38px; border-radius: 50%;
+.t-video-embed iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+}
+.t-video-placeholder {
+  width: 100%; aspect-ratio: 16/9;
+  background: rgba(201,168,108,0.08); border: 1px solid rgba(201,168,108,0.15);
+  border-radius: 4px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: rgba(201,168,108,0.4); font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.t-card:hover .t-video-placeholder {
   background: rgba(201,168,108,0.12);
-  border: 1px solid rgba(201,168,108,0.28);
-  color: var(--gold); flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.3s ease;
-}
-.t-play:hover { background: rgba(201,168,108,0.22); border-color: var(--gold); }
-.t-play svg { width: 13px; height: 13px; }
-.t-bar-wrap {
-  flex: 1; height: 2px; background: rgba(201,168,108,0.14);
-  cursor: pointer; position: relative; border-radius: 1px;
-}
-.t-bar-fill {
-  height: 100%; width: 0%; background: var(--gold);
-  border-radius: 1px; transition: width 0.15s linear;
-  pointer-events: none;
-}
-.t-time {
-  font-family: var(--display); font-size: 0.58rem;
-  letter-spacing: 0.08em; color: rgba(201,168,108,0.45);
-  white-space: nowrap; min-width: 60px; text-align: right;
 }
 
 /* ============================================================
@@ -1509,142 +1502,73 @@ function goTo(n) {
 timer = setInterval(() => goTo(cur + 1), 5800);
 
 
-/* ---- Audio teachings data ---- */
+/* ---- Video teachings data (YouTube) ---- */
 const teachingsData = [
   { loc: 'Feb 2020 · Palatine, IL', title: 'A Perfect Living Master Must Experience Totality',
-    file: 'Ishwar C Puri   A Perfect Living Master Must Experience Totality   Palatine,IL   7Feb2020   Part2 2.mp3' },
+    youtubeId: '' },
   { loc: 'Feb 2020 · Palatine, IL', title: 'Spiritual Path: A State of Awareness, Not a Journey',
-    file: 'Ishwar C Puri   Spiritual Path a State of Awareness, Not a Journey   Palatine,IL   7Feb2020  Part1 2.mp3' },
+    youtubeId: '' },
   { loc: 'Nov 2019 · Palatine, IL', title: 'The Endless Sound',
-    file: 'Ishwar C. Puri   The Endless Sound   Community Meeting   Palatine, IL   08Nov2019   Part1 2.mp3' },
+    youtubeId: '' },
   { loc: 'Nov 2019 · Palatine, IL', title: 'Glimpses of Higher Planes',
-    file: 'Ishwar C. Puri   Glimpses of Higher Planes   Community Meeting   Palatine, IL   08Nov2019   Part2 2.mp3' },
+    youtubeId: '' },
   { loc: 'Sep 2019 · Bruce, WI', title: "Ravidas's Gift to His Disciple — Mitti Seva",
-    file: "Ishwar C. Puri   Ravidas's Gift to his Disciple   Mitti Seva   Bruce, WI   16Sep2019.mp3" },
+    youtubeId: '' },
   { loc: 'Jan 2019 · Austin, TX', title: 'How to Help the Soul — Part 1',
-    file: 'Ishwar C. Puri   How To Help The Soul   Austin, TX   13Jan2019   Part 1 2.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'The Journey Within',
-    file: 'Ishwar C. Puri   The Journey Within   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'The Path to Enlightenment',
-    file: 'Ishwar C. Puri   The Path to Enlightenment   Minn, MN  1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'Socratic Theme: Know Thyself',
-    file: 'Ishwar C. Puri   Socratic Theme; Know Thyself   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'In the Beginning Was the Word',
-    file: 'Ishwar C. Puri   In the Beginning was the Word   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'A Higher Consciousness',
-    file: 'Ishwar C. Puri   A Higher Consciousness   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'Mysticism and Reason',
-    file: 'Ishwar C. Puri   Mysticism and Reason   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'Spiritual Evolution',
-    file: 'Ishwar C. Puri   Spiritual Evolution   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'Spiritual Healing',
-    file: 'Ishwar C. Puri   Spiritual Healing   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'Intuition and Reason',
-    file: 'Ishwar C. Puri   Intuition and Reason   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
   { loc: '1975–1980 · Minneapolis, MN', title: 'Path of the Masters',
-    file: 'Ishwar C. Puri   Path of the Masters   Minn, MN   1975-1980.mp3' },
+    youtubeId: '' },
 ];
 
 const playIcon  = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
 const pauseIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
-const activeAudios = new Map();
-
-function fmtTime(s) {
-  if (!isFinite(s)) return '—';
-  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
-  return m + ':' + String(sec).padStart(2, '0');
-}
 
 const grid = document.getElementById('t-grid');
 teachingsData.forEach((t, i) => {
   const card = document.createElement('div');
   card.className = 't-card rv';
   card.style.transitionDelay = (i % 4 * 0.07) + 's';
+  
+  let playerHTML = '';
+  if (t.youtubeId && t.youtubeId.trim()) {
+    playerHTML = `
+      <div class="t-video-embed">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${encodeURIComponent(t.youtubeId)}" 
+          title="${t.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>`;
+  } else {
+    playerHTML = `
+      <div class="t-video-placeholder">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;opacity:0.5;"><path d="M8 5v14l11-7z"/></svg>
+        <p style="font-size:0.9rem;opacity:0.6;margin-top:8px;">YouTube link to be added</p>
+      </div>`;
+  }
+  
   card.innerHTML = `
     <p class="t-loc">${t.loc}</p>
     <p class="t-title">${t.title}</p>
-    <div class="t-player">
-      <button class="t-play" aria-label="Play">${playIcon}</button>
-      <div class="t-bar-wrap">
-        <div class="t-bar-fill"></div>
-      </div>
-      <span class="t-time">—</span>
-    </div>`;
+    ${playerHTML}`;
   grid.appendChild(card);
   revObs.observe(card);
-
-  const btn  = card.querySelector('.t-play');
-  const fill = card.querySelector('.t-bar-fill');
-  const bar  = card.querySelector('.t-bar-wrap');
-  const tm   = card.querySelector('.t-time');
-  let audio  = null;
-
-  function getAudio() {
-    if (!audio) {
-      const src = new URL('content/audio/' + encodeURIComponent(t.file), document.baseURI).href;
-      audio = new Audio(src);
-      audio.preload = 'metadata';
-      console.log('Audio created:', { src, file: t.file, basePath: document.baseURI });
-      
-      audio.addEventListener('loadstart', () => {
-        console.log('Audio loadstart:', src);
-      });
-      audio.addEventListener('canplay', () => {
-        console.log('Audio canplay:', { src, duration: audio.duration, readyState: audio.readyState, networkState: audio.networkState });
-      });
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration) {
-          fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-          tm.textContent   = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration);
-        }
-      });
-      audio.addEventListener('ended', () => {
-        btn.innerHTML = playIcon;
-        fill.style.width = '0%';
-        tm.textContent = fmtTime(audio.duration);
-      });
-      audio.addEventListener('error', () => {
-        console.error('Audio error event:', { src: audio.src, code: audio.error?.code, message: audio.error?.message, networkState: audio.networkState, readyState: audio.readyState });
-        btn.innerHTML = playIcon;
-        tm.textContent = 'Audio load error';
-      });
-      audio.addEventListener('stalled', () => {
-        console.warn('Audio stalled:', src);
-      });
-    }
-    return audio;
-  }
-
-  btn.addEventListener('click', () => {
-    const a = getAudio();
-    // Pause all others
-    activeAudios.forEach((otherAudio, otherBtn) => {
-      if (otherBtn !== btn && !otherAudio.paused) {
-        otherAudio.pause();
-        otherBtn.innerHTML = playIcon;
-      }
-    });
-    if (a.paused) {
-      a.play().then(() => {
-        btn.innerHTML = pauseIcon;
-      }).catch(err => {
-        console.error('Audio play failed', err, a.src);
-        btn.innerHTML = playIcon;
-      });
-    } else {
-      a.pause();
-      btn.innerHTML = playIcon;
-    }
-    activeAudios.set(btn, a);
-  });
-
-  bar.addEventListener('click', e => {
-    const a = getAudio();
-    if (a.duration) {
-      const r = bar.getBoundingClientRect();
-      a.currentTime = ((e.clientX - r.left) / r.width) * a.duration;
-    }
-  });
 });
 
 
