@@ -636,60 +636,6 @@ button { cursor: pointer; font-family: inherit; }
   border: 1px solid rgba(201,168,108,0.18); z-index: -1;
 }
 
-/* ============================================================
-   AUDIO TEACHINGS
-   ============================================================ */
-#teachings { padding: var(--pad) 0; background: var(--midnight); }
-#teachings .section-heading { color: var(--cream); }
-#teachings .section-heading em { font-style: italic; color: var(--gold); }
-.teachings-lead {
-  font-family: var(--serif); font-style: italic;
-  font-size: 1.1rem; color: rgba(245,240,232,0.55);
-  margin-bottom: 52px; max-width: 560px;
-}
-.t-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(350px,1fr));
-  gap: 2px;
-}
-.t-card {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(201,168,108,0.09);
-  padding: 30px 32px 28px;
-  transition: background 0.35s, border-color 0.35s;
-}
-.t-card:hover {
-  background: rgba(201,168,108,0.045);
-  border-color: rgba(201,168,108,0.26);
-}
-.t-loc {
-  font-family: var(--display); font-size: 0.58rem;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 10px;
-}
-.t-title {
-  font-family: var(--serif); font-size: 1.08rem;
-  color: var(--cream); line-height: 1.45; margin-bottom: 20px;
-}
-.t-video-embed {
-  position: relative; width: 100%; padding-bottom: 56.25%;
-  background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden;
-  margin-bottom: 0;
-}
-.t-video-embed iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  border: none;
-}
-.t-video-placeholder {
-  width: 100%; aspect-ratio: 16/9;
-  background: rgba(201,168,108,0.08); border: 1px solid rgba(201,168,108,0.15);
-  border-radius: 4px; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  color: rgba(201,168,108,0.4); font-size: 0.9rem;
-  transition: background 0.3s;
-}
-.t-card:hover .t-video-placeholder {
-  background: rgba(201,168,108,0.12);
-}
 
 /* ============================================================
    BOOKS
@@ -911,7 +857,6 @@ footer {
   .nav-burger { display: flex; }
   .principles-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(3,1fr); }
-  .t-grid { grid-template-columns: 1fr; }
   .books-grid { grid-template-columns: repeat(2,1fr); }
   .about-photo-border { display: none; }
   .about-photo-badge { display: none; }
@@ -939,7 +884,6 @@ footer {
     <li><a href="#about"     onclick="closeMenu()">The Master</a></li>
     <li><a href="#principles" onclick="closeMenu()">Principles</a></li>
     <li><a href="#wisdom"    onclick="closeMenu()">Wisdom</a></li>
-    <li><a href="#teachings" onclick="closeMenu()">Teachings</a></li>
     <li><a href="#books"     onclick="closeMenu()">Books</a></li>
     <li><a href="#gallery"   onclick="closeMenu()">Gallery</a></li>
     <li><a href="#connect"   onclick="closeMenu()">Connect</a></li>
@@ -1006,7 +950,6 @@ footer {
       <div class="hero-rule"></div>
       <p class="hero-tagline">You Are Eternal &nbsp;·&nbsp; Ishwar's Grace Is Infinite</p>
       <div class="hero-cta">
-        <a href="#teachings" class="btn-gold"><span>Explore Teachings</span></a>
         <a href="#about"     class="btn-outline">The Master</a>
       </div>
     </div>
@@ -1261,24 +1204,6 @@ footer {
 <!-- ====================================================
      AUDIO TEACHINGS
      ==================================================== -->
-<section id="teachings">
-  <div class="container">
-    <span class="eyebrow rv">Listen</span>
-    <h2 class="section-heading rv">
-      Sacred <em style="font-style:italic;color:var(--gold);">Teachings</em>
-    </h2>
-    <div class="divider rv"></div>
-    <p class="teachings-lead rv">
-      Recordings spanning decades — from the 1970s through 2020 — exploring consciousness,
-      love, the inner path, and the nature of the divine.
-    </p>
-
-    <div class="t-grid" id="t-grid">
-      <!-- Cards injected by JS to handle filename encoding cleanly -->
-    </div>
-  </div>
-</section>
-
 
 <!-- ====================================================
      GALLERY
@@ -1502,74 +1427,6 @@ function goTo(n) {
 timer = setInterval(() => goTo(cur + 1), 5800);
 
 
-/* ---- Video teachings data (YouTube) ---- */
-const teachingsData = [
-  { loc: 'Feb 2020 · Palatine, IL', title: 'A Perfect Living Master Must Experience Totality',
-    youtubeId: 'KKrGG_JS99o' },
-  { loc: 'Feb 2020 · Palatine, IL', title: 'Spiritual Path: A State of Awareness, Not a Journey',
-    youtubeId: 'EiYuaD8wbe8' },
-  { loc: 'Nov 2019 · Palatine, IL', title: 'The Endless Sound',
-    youtubeId: 'fEnK7DcgrBQ' },
-  { loc: 'Nov 2019 · Palatine, IL', title: 'Glimpses of Higher Planes',
-    youtubeId: '0gz1TppHX9g' },
-  { loc: 'Sep 2019 · Bruce, WI', title: "Ravidas's Gift to His Disciple — Mitti Seva",
-    youtubeId: 'cgtjYNe2_Hk' },
-  { loc: 'Jan 2019 · Austin, TX', title: 'How to Help the Soul — Part 1',
-    youtubeId: 'PvtgKGZWVtU' }, // Using "How to Trust Your Intuition" as closest match
-  { loc: '1975–1980 · Minneapolis, MN', title: 'The Journey Within',
-    youtubeId: '9dTShsbc3uQ' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'The Path to Enlightenment',
-    youtubeId: 'x1O_In30KRs' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'Socratic Theme: Know Thyself',
-    youtubeId: 't-7TgMChdG8' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'In the Beginning Was the Word',
-    youtubeId: 'q0peuqe-wUk' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'A Higher Consciousness',
-    youtubeId: 'W9T4jtiyL7s' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'Mysticism and Reason',
-    youtubeId: 'gG8Ycg3Z_yM' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'Spiritual Evolution',
-    youtubeId: '0XdCTnlDlzo' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'Spiritual Healing',
-    youtubeId: 'vJHqm-o1zVU' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'Intuition and Reason',
-    youtubeId: '6oSBWHvK-P4' },
-  { loc: '1975–1980 · Minneapolis, MN', title: 'Path of the Masters',
-    youtubeId: 'LrsEjjIv0b4' }, // Using "What is Consciousness" as foundational teaching
-];
-
-const playIcon  = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
-const pauseIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
-
-const grid = document.getElementById('t-grid');
-teachingsData.forEach((t, i) => {
-  const card = document.createElement('div');
-  card.className = 't-card rv';
-  card.style.transitionDelay = (i % 4 * 0.07) + 's';
-  
-  let playerHTML = '';
-  if (t.youtubeId && t.youtubeId.trim()) {
-    playerHTML = `
-      <div class="t-video-embed">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${encodeURIComponent(t.youtubeId)}" 
-          title="${t.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-      </div>`;
-  } else {
-    playerHTML = `
-      <div class="t-video-placeholder">
-        <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;opacity:0.5;"><path d="M8 5v14l11-7z"/></svg>
-        <p style="font-size:0.9rem;opacity:0.6;margin-top:8px;">YouTube link to be added</p>
-      </div>`;
-  }
-  
-  card.innerHTML = `
-    <p class="t-loc">${t.loc}</p>
-    <p class="t-title">${t.title}</p>
-    ${playerHTML}`;
-  grid.appendChild(card);
-  revObs.observe(card);
-});
 
 
 /* ---- Gallery lightbox ---- */
@@ -1607,5 +1464,6 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
-< ! - -   D e p l o y   t r i g g e r :   0 4 / 2 1 / 2 0 2 6   0 8 : 1 1 : 0 1   - - >  
+< ! - -   D e p l o y   t r i g g e r :   0 4 / 2 1 / 2 0 2 6   0 8 : 1 1 : 0 1   - - > 
+ 
  
