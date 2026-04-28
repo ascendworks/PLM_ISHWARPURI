@@ -1,6 +1,0 @@
----
-# IONOS Deploy Now — project configuration
-# Plain static HTML site, no build step required.
-# The publish directory is the repo root itself.
-distFolder: .
-buildCommand: ""

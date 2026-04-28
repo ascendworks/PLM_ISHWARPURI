@@ -28,3 +28,12 @@ desktop.ini
 
 # ── Skills submodule (separate repo) ────────────────────────────
 skills/
+
+# ── Local dev / scratch files ────────────────────────────────────
+PLM_ISHWARPURI-main/
+results.json
+results_core.json
+search_core.py
+search_youtube.py
+.venv/
+.claude/
