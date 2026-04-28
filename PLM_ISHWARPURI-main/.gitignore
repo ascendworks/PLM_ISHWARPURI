@@ -1,0 +1,30 @@
+# ── Large binary assets (too large for GitHub) ──────────────────
+# content/audio/   [ENABLED FOR DEPLOYMENT — audio files now tracked]
+books/
+content/ICP_POST/
+
+# ── Bulk photo dump (keep only the 6 named hero/gallery images) ──
+# Ignore bulk numbered/dated photos, keep only the named ICP_ series
+content/images/IMG_*.jpg
+content/images/SmartSelect_*.jpg
+content/images/VideoCapture_*.jpg
+content/images/20201*.jpg
+content/images/20201*.mp4
+content/images/20210*.jpg
+content/images/20210*.mp4
+content/images/*.TM.*
+content/images/Maharaj-*.jpg
+content/images/Sawan_*.jpg
+content/images/.trashed-*
+
+# ── OS / editor junk ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+.vscode/
+.idea/
+
+# ── Skills submodule (separate repo) ────────────────────────────
+skills/
